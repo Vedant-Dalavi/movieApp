@@ -30,3 +30,11 @@ mongoose
     )
   )
   .catch((e) => console.log(e));
+
+
+app.get("/", (req, res) => {
+  return res.json({
+    success: true,
+    message: "Your server is up ans running"
+  })
+})
