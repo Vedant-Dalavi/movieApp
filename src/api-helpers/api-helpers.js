@@ -1,8 +1,9 @@
 import axios from "axios";
 import toast from "react-hot-toast";
+const BASEURL = process.env.BASEURL;
 
 export const getAllMovies = async () => {
-  const res = await axios.get("/movie").catch((err) => console.log(err));
+  const res = await axios.get(`${BASEURL}/movie`).catch((err) => console.log(err));
 
   if (res.status !== 200) {
     return console.log("No Data");
@@ -14,7 +15,7 @@ export const getAllMovies = async () => {
 
 export const sendUserAuthRequest = async (data, signup) => {
   const res = await axios
-    .post(`/user/${signup ? "signup" : "login"}`, {
+    .post(`${BASEURL}/user/${signup ? "signup" : "login"}`, {
       name: signup ? data.name : "",
       email: data.email,
       password: data.password,
@@ -31,7 +32,7 @@ export const sendUserAuthRequest = async (data, signup) => {
 
 export const sendAdminAuthRequest = async (data) => {
   const res = await axios
-    .post("/admin/login", {
+    .post(`${BASEURL}/admin/login`, {
       email: data.email,
       password: data.password,
     })
@@ -46,7 +47,7 @@ export const sendAdminAuthRequest = async (data) => {
 };
 
 export const getMovieDetails = async (id) => {
-  const res = await axios.get(`/movie/${id}`).catch((err) => console.log(err));
+  const res = await axios.get(`${BASEURL}/movie/${id}`).catch((err) => console.log(err));
   if (res.status !== 200) {
     return console.log("Unexpected Error");
   }
@@ -56,7 +57,7 @@ export const getMovieDetails = async (id) => {
 
 export const newBooking = async (data) => {
   const res = await axios
-    .post("/booking", {
+    .post(`${BASEURL}/booking`, {
       movie: data.movie,
       seatNumber: data.seatNumber,
       date: data.date,
@@ -74,7 +75,7 @@ export const newBooking = async (data) => {
 export const getUserBooking = async () => {
   const id = localStorage.getItem("userId");
   const res = await axios
-    .get(`/user/bookings/${id}`)
+    .get(`${BASEURL}/user/bookings/${id}`)
     .catch((err) => console.log(err));
 
   if (res.status !== 200) {
@@ -86,7 +87,7 @@ export const getUserBooking = async () => {
 
 export const deleteBooking = async (id) => {
   const res = await axios
-    .delete(`/booking/${id}`)
+    .delete(`${BASEURL}/booking/${id}`)
     .catch((err) => console.log(err));
 
   // toast.error("Ticket Cancelled Successfully");
@@ -101,7 +102,7 @@ export const deleteBooking = async (id) => {
 
 export const getUserDetails = async () => {
   const id = localStorage.getItem("userId");
-  const res = await axios.get(`/user/${id}`).catch((err) => console.log(err));
+  const res = await axios.get(`${BASEURL}/user/${id}`).catch((err) => console.log(err));
   if (res.status !== 200) {
     return console.log("Unexpected Error");
   }
@@ -112,7 +113,7 @@ export const getUserDetails = async () => {
 export const addMovie = async (data) => {
   const res = await axios
     .post(
-      "/movie",
+      `${BASEURL}/movie`,
       {
         title: data.title,
         description: data.description,
@@ -141,7 +142,7 @@ export const addMovie = async (data) => {
 export const getAdminById = async () => {
   const adminId = localStorage.getItem("adminId");
   const res = await axios
-    .get(`/admin/${adminId}`)
+    .get(`${BASEURL}/admin/${adminId}`)
     .catch((err) => console.log(err));
 
   if (res.status !== 200) {
