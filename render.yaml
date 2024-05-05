@@ -1,0 +1,15 @@
+# Exported from Render on 2024-05-05T16:09:37Z
+services:
+- type: web
+  name: movieApp
+  runtime: node
+  repo: https://github.com/Vedant-Dalavi/movieApp
+  plan: free
+  envVars:
+  - key: MONGODB
+    sync: false
+  region: singapore
+  buildCommand: npm install
+  startCommand: npm start
+  rootDir: ./backend
+version: "1"
