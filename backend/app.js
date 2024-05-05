@@ -17,12 +17,15 @@ app.use("/admin", adminRouter);
 app.use("/movie", movieRouter);
 app.use("/booking", bookingsRouter);
 
+const PORT = process.env.PORT || 5000;
+mongoose.set('strictQuery', true);
 mongoose
   .connect(
-    `mongodb+srv://vedantdalvi59:vedantdalvi59@mongodb.r8rlscx.mongodb.net/movieDB`
+    `${process.env.MONGODB}`,
+
   )
   .then(() =>
-    app.listen(5000, () =>
+    app.listen(PORT, () =>
       console.log("Connected To Database And Server is running")
     )
   )

@@ -27,7 +27,7 @@ export const addMovie = async (req, res, next) => {
     !title &&
     title.trim() === "" &&
     !description &&
-    description.trim() == "" &&
+    description.trim() === "" &&
     !posterUrl &&
     posterUrl.trim() === ""
   ) {

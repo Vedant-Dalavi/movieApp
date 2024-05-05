@@ -68,7 +68,6 @@ const Header = () => {
                   ...params.InputProps,
                   type: "search",
                 }}
-                onClick={navigate(`/booking/${params._id}`)}
               />
             )}
           />

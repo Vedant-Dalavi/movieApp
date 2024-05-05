@@ -30,7 +30,6 @@ const User = () => {
 
 
   const handleDelete = (id) => {
-    navigate("/");
     deleteBooking(id)
       .then(() => { navigate("/"); })
       .catch((err) => console.log(err));
