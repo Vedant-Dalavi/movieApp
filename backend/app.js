@@ -12,7 +12,9 @@ const app = express();
 // middlewares
 app.use(
   cors({
-		origin: "https://movie-app-zeta-sage-35.vercel.app",
+		// origin: "https://movie-app-zeta-sage-35.vercel.app",
+	  	 origin: "https://localhost:3000",
+
 		credentials: true,
 	})
 );
