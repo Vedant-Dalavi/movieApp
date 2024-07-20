@@ -10,7 +10,13 @@ dotenv.config();
 const app = express();
 
 // middlewares
-app.use(cors());
+app.use(cors({
+  origin: "https://movie-app-zeta-sage-35.vercel.app/",
+  credentials: true,
+
+
+}
+));
 app.use(express.json());
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
@@ -18,7 +24,7 @@ app.use("/movie", movieRouter);
 app.use("/booking", bookingsRouter);
 
 const PORT = process.env.PORT || 5000;
-mongoose.set('strictQuery', true);
+// mongoose.set('strictQuery', true);
 mongoose
   .connect(
     `${process.env.MONGODB}`,

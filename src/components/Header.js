@@ -14,6 +14,7 @@ import { getAllMovies } from "../api-helpers/api-helpers";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { adminActions, userActions } from "../store";
+
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,6 +37,49 @@ const Header = () => {
       navigate(`/booking/${movie._id}`);
     }
   };
+
+  const renderTabs = () => {
+    const tabsArray = [
+      <Tab LinkComponent={Link} to="/movies" label="Movies" key="movies" />,
+    ];
+
+    if (!isAdminLoggedIn && !isUserLoggedIn) {
+      tabsArray.push(
+        <Tab label="Admin" LinkComponent={Link} to="/admin" key="admin" />,
+        <Tab label="Login" LinkComponent={Link} to="/auth" key="login" />
+      );
+    }
+
+    if (isUserLoggedIn) {
+      tabsArray.push(
+        <Tab label="Profile" LinkComponent={Link} to="/user" key="profile" />,
+        <Tab
+          onClick={() => logout(false)}
+          label="Logout"
+          LinkComponent={Link}
+          to="/"
+          key="logout"
+        />
+      );
+    }
+
+    if (isAdminLoggedIn) {
+      tabsArray.push(
+        <Tab label="Add Movie" LinkComponent={Link} to="/add" key="add-movie" />,
+        <Tab label="Profile" LinkComponent={Link} to="/user-admin" key="user-admin" />,
+        <Tab
+          onClick={() => logout(true)}
+          label="Logout"
+          LinkComponent={Link}
+          to="/"
+          key="admin-logout"
+        />
+      );
+    }
+
+    return tabsArray;
+  };
+
   return (
     <AppBar position="sticky" sx={{ bgcolor: "#2b2d42" }}>
       <Toolbar>
@@ -54,7 +98,7 @@ const Header = () => {
                 sx={{ input: { color: "white" } }}
                 variant="standard"
                 {...params}
-                placeholder="Search Acroos Multiple Movies"
+                placeholder="Search Across Multiple Movies"
               />
             )}
           />
@@ -66,36 +110,7 @@ const Header = () => {
             value={value}
             onChange={(e, val) => setValue(val)}
           >
-            <Tab LinkComponent={Link} to="/movies" label="Movies" />
-            {!isAdminLoggedIn && !isUserLoggedIn && (
-              <>
-                <Tab label="Admin" LinkComponent={Link} to="/admin" />
-                <Tab label="Login" LinkComponent={Link} to="/auth" />
-              </>
-            )}
-            {isUserLoggedIn && (
-              <>
-                <Tab label="Profile" LinkComponent={Link} to="/user" />
-                <Tab
-                  onClick={() => logout(false)}
-                  label="Logout"
-                  LinkComponent={Link}
-                  to="/"
-                />
-              </>
-            )}
-            {isAdminLoggedIn && (
-              <>
-                <Tab label="Add Movie" LinkComponent={Link} to="/add" />
-                <Tab label="Profile" LinkComponent={Link} to="/user-admin" />
-                <Tab
-                  onClick={() => logout(true)}
-                  label="Logout"
-                  LinkComponent={Link}
-                  to="/"
-                />
-              </>
-            )}
+            {renderTabs()}
           </Tabs>
         </Box>
       </Toolbar>

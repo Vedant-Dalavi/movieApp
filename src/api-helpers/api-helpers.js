@@ -1,6 +1,11 @@
 import axios from "axios";
+// import { config } from "dotenv";
 import toast from "react-hot-toast";
-const BASEURL = process.env.BASEURL;
+// const dotenv = require("dotenv");
+
+// dotenv.config();
+const BASEURL = "http://movieapp-c859.onrender.com";
+// const BASEURL = "http://localhost:5000";
 
 export const getAllMovies = async () => {
   const res = await axios.get(`${BASEURL}/movie`).catch((err) => console.log(err));
