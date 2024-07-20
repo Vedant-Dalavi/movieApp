@@ -9,7 +9,7 @@ import { store } from "./store";
 import { Toaster } from "react-hot-toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://movieapp-c859.onrender.com";
 root.render(
   <React.StrictMode>
     <BrowserRouter>
