@@ -13,7 +13,7 @@ const app = express();
 app.use(
   cors({
 		// origin: "https://movie-app-zeta-sage-35.vercel.app",
-	  	 origin: "https://localhost:3000",
+	  	 origin: "http://localhost:3000",
 
 		credentials: true,
 	})
