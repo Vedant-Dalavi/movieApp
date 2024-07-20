@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 // const dotenv = require("dotenv");
 
 // dotenv.config();
-const BASEURL = "http://movieapp-c859.onrender.com";
+const BASEURL = "https://movieapp-c859.onrender.com";
 // const BASEURL = "http://localhost:5000";
 
 export const getAllMovies = async () => {
