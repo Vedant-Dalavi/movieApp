@@ -10,7 +10,12 @@ dotenv.config();
 const app = express();
 
 // middlewares
-app.use(cors());
+app.use(
+  cors({
+		origin: "https://movie-app-zeta-sage-35.vercel.app/",
+		credentials: true,
+	})
+);
 app.use(express.json());
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
